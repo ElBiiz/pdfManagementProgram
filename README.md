@@ -23,6 +23,8 @@ Version 1.0
 
 Feature:
 
+*Version 1.2*
+
 •	Merge 2 or more pdfs into one
 
 •	Extract the file for each page
