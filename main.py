@@ -1,4 +1,5 @@
 #Scrivere un programma che gestisca i pdf
+#Versione 1.2
 
 
 import PyPDF2
@@ -28,10 +29,10 @@ def unionepdf(nomefiles):
             if nomeFile.endswith(".pdf"):
                 PdfFile = open((cartellainputmerge + nomeFile),"rb")
                 readerPDF = PyPDF2.PdfFileReader(PdfFile)
-                print(f"Lettura del file:  {PdfFile}")
+                print(f"Lettura del file:  {nomeFile}")
                 merger.append(readerPDF)
                 PdfFile.close()
-        print(f"Scrittura del file:   {nomefiles}   in {str(pdfoutput)}")
+        print(f"Scrittura del file:   {nomefiles}   \n")
         merger.write(pdfoutput)
         merger.close()
         
@@ -49,11 +50,11 @@ def  divisionepdf():
             for numeropagine in range(letturapdf.numPages):
                 writer = PyPDF2.PdfFileWriter()
                 writer.addPage(letturapdf.getPage(numeropagine))
-                print(f"Creazione della cartella: {str(filebase)} in {str(cartellaoutputsplit)}")
                 if not os.path.exists(cartellaoutputsplit + filebase):
+                    print(f"Creazione della cartella: {(filebase)} \n")
                     os.makedirs(cartellaoutputsplit + filebase)
                 with open(os.path.join(cartellaoutputsplit + filebase, "{0}_Pagina{1}.pdf".format(filebase,numeropagine + 1)),'wb') as f:
-                    print(f"Scrittura del file: str{f} in corso...")
+                    print("Scrittura del file: " + "{0}_Pagina{1}.pdf".format(filebase,numeropagine + 1) + " in corso...")
                     writer.write(f)
                     f.close()
     print("Divisione PDF completata con successo!!!")
@@ -123,7 +124,7 @@ if os.path.exists(cartellainputmerge) and os.path.exists(cartellaoutputmerge) an
             
     
         if scelta == 1:
-            file = str(input("Controlla se nella cartella sono presenti i file che vorresti unire(y,n):  "))
+            file = str(input("Controlla se nella cartella sono presenti i file che vorresti unire(y or n):  "))
             if file == "y"or file == "Y":
                 if os.listdir("./inputfile/daunire/") == []:
                     print("Non e' presente nessun file compatibile... Riprova!")
@@ -131,24 +132,25 @@ if os.path.exists(cartellainputmerge) and os.path.exists(cartellaoutputmerge) an
                 else:   
                     varnome = str(input("Scrivi il nome con cui vorresti salvare il file: "))
                     unionepdf((varnome + ".pdf"))
-                    scelta2 = int(input("Vuoi utilizzare ancora il programma o vuoi uscire? (1 o 2): "))
-                    if scelta2 == 1:
+                    scelta2 = int(input("Vuoi utilizzare ancora il programma o vuoi uscire? (y or n): "))
+                    if scelta2 == "y" or scelta2 == "Y":
                         continue
                     else:
                         break
 
         elif scelta == 2:
-            file1 =  str(input("Controlla se nella cartella sono presenti i file che vorresti dividere(y,n): " ))
+            file1 =  str(input("Controlla se nella cartella sono presenti i file che vorresti dividere(y or n): " ))
             if file1 == "y" or file1 =="Y":
                 if os.listdir("./inputfile/dadividere/") == []:
                     print("Non e' presente nessun file compatibile... Riprova!")
                     continue
                 divisionepdf()
-                scelta2 = int(input("Vuoi utilizzare ancora il programma o vuoi uscire? (1 o 2): "))
-                if scelta2 == 1:
+                scelta2 = int(input("Vuoi utilizzare ancora il programma o vuoi uscire? (y or n): "))
+                if scelta2 == "y" or  scelta2=="Y":
                     continue
                 else:
                     break
+
             elif file1 == "n" or file1 == "N":
                     continue
     
