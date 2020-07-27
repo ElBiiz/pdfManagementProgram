@@ -1,10 +1,19 @@
 A simple PDF Management Program in Python
 
+Version 1.1
+
+•	Added informations during the process
+
+• Optimized code
+
+
+
 
 Version 1.0
 
-
 •	Initial Build
+
+--------------------------------------------------------
 
 Feature:
 
