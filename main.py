@@ -1,7 +1,6 @@
 #Scrivere un programma che gestisca i pdf
 #Versione 1.2
 
-
 import PyPDF2
 import os
 import shutil
@@ -16,9 +15,23 @@ cartellaoutputsplit = os.path.join(os.getcwd(),'outputfile/divisi/')
 
 #----------------  OGGETTI  CON VALORE DI RITORNO LE FOLDERS ---------------- 
 
-
-
 #-------------------------------------- FUNZIONI --------------------------------------
+
+def controllodir():
+
+        if not os.path.exists(cartellainputmerge):
+            os.makedirs(cartellainputmerge)
+
+        if not os.path.exists(cartellaoutputmerge):
+            os.makedirs(cartellaoutputmerge)
+
+        if not os.path.exists(cartellainputsplit):
+            os.makedirs(cartellainputsplit)
+
+        if not os.path.exists(cartellaoutputsplit):
+            os.makedirs(cartellaoutputsplit)
+
+
 def unionepdf(nomefiles):
         listafiles = os.listdir("./inputfile/daunire/")
         print(listafiles)
@@ -37,8 +50,6 @@ def unionepdf(nomefiles):
         merger.close()
         
         print("Unione completata con successo!")
-
-
 
 def  divisionepdf():
     listafiles = os.listdir("./inputfile/dadividere/")
@@ -61,60 +72,14 @@ def  divisionepdf():
                 
 #-------------------------------------- FUNZIONI --------------------------------------
 
-
-#-------------------------------------- CONTROLLO CARTELLE --------------------------------------
-
-if os.path.exists(cartellainputmerge):
-    print("Cartella input esistente")
-    checkcartellainput = True
-elif  not os.path.exists(cartellainputmerge):
-    print("Cartella input non esistente")
-    checkcartellainput = False
-    if checkcartellainput == False:
-        os.makedirs(cartellainputmerge)
-        print("Cartella input creata con successo")
-        checkcartellainput = True
-
-if os.path.exists(cartellaoutputmerge):
-    print("Cartella output esistente")
-    checkcartellaoutput = True
-elif not os.path.exists(cartellaoutputmerge):
-    print("Cartella output non esistente")
-    checkcartellaoutput = False
-    if checkcartellaoutput == False:
-        os.makedirs(cartellaoutputmerge)
-        print("Cartella output creata con successo")
-        checkcartellaoutput = True
-
-if os.path.exists(cartellainputsplit):
-    print("Cartella input split esistente")
-    checkcartellasplitinput = True
-elif  not os.path.exists(cartellainputsplit):
-    print("Cartella input split non esistente")
-    checkcartellasplitinput = False
-    if checkcartellasplitinput == False:
-        os.makedirs(cartellainputsplit)
-        print("Cartella input split creata con successo")
-        checkcartellasplitinput= True
-
-if os.path.exists(cartellaoutputsplit):
-    print("Cartella output split esistente")
-    checkcartellasplitoutput = True
-elif not os.path.exists(cartellaoutputsplit):
-    print("Cartella output split non esistente")
-    checkcartellasplitoutput = False
-    if checkcartellasplitoutput == False:
-        os.makedirs(cartellaoutputsplit)
-        print("Cartella output split creata con successo")
-        checkcartellasplitoutput= True
-
-#-------------------------------------- CONTROLLO CARTELLE --------------------------------------
-
-
 #-------------------------------------- MAIN PROGRAM--------------------------------------
 
 if os.path.exists(cartellainputmerge) and os.path.exists(cartellaoutputmerge) and os.path.exists(cartellaoutputsplit) and os.path.exists(cartellainputsplit):
-    print("Tutte le cartelle  sono presenti. Non sono necessarie apportare ulteriori modifiche ")
+    print("Le cartelle necessarie al funzionamento del programma sono presenti!")
+else:
+    controllodir()
+    print("Le cartelle necessarie al funzionamento del programma sono state create con successo!")
+
     while True:
         scelta = int(input("Scegli la modalita': \n \
             1: Unire due o piu' PDF \n \
@@ -122,7 +87,6 @@ if os.path.exists(cartellainputmerge) and os.path.exists(cartellaoutputmerge) an
             3 o superiore: Esci dal programma \n \
             Fai la tua scelta: "))
             
-    
         if scelta == 1:
             file = str(input("Controlla se nella cartella sono presenti i file che vorresti unire(y or n):  "))
             if file == "y"or file == "Y":
@@ -153,11 +117,8 @@ if os.path.exists(cartellainputmerge) and os.path.exists(cartellaoutputmerge) an
 
             elif file1 == "n" or file1 == "N":
                     continue
-    
-
 
         if scelta >= 3:
             break 
-
 
 #-------------------------------------- MAIN PROGRAM--------------------------------------
