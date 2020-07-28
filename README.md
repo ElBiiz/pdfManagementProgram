@@ -2,12 +2,12 @@ A simple PDF Management Program in Python
 
 Version 1.3
 • Added a new feature(Extract custom pages and merge it)
+
 • Fixed some bugs
 
 Version 1.2
 
 • Other optimizations
-
 
 
 Version 1.1
